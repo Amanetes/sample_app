@@ -8,6 +8,9 @@ start:
 console:
 	bin/rails console
 
+guard:
+	bundle exec guard -c
+
 lint:
 	bundle exec rubocop
 

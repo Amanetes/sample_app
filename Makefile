@@ -11,6 +11,9 @@ console:
 guard:
 	bundle exec guard -c
 
+sandbox:
+	bin/rails console --sandbox
+
 lint:
 	bundle exec rubocop
 

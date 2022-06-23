@@ -15,6 +15,15 @@ class UsersSignupTest < ActionDispatch::IntegrationTest
     assert_template 'users/new'
     assert_select 'div#error_explanation'
     assert_select 'div.alert.alert-danger'
+    assert_select 'li', "Name can't be blank"
+    assert_select 'li', 'Email is invalid'
+    assert_select 'li', "Password confirmation doesn't match Password"
+    # Отобразить список всех валидаций атрибута пароль)
+    min_validation = User.validators_on(:password).find do |v|
+      v.options.key?(:minimum)
+    end
+    min_length = min_validation.options[:minimum]
+    assert_select 'li', "Password is too short (minimum is #{min_length} characters)"
   end
 
   test 'valid signup information' do

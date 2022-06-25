@@ -1,0 +1,8 @@
+---
+en:
+  user_mailer:
+    account_activation:
+      confirm: Complete registration
+      congratulation: Hello, %{user_name}!
+      subject: Account activation
+      welcome_text: Welcome to the Sample App. To complete registration follow the link below

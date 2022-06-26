@@ -6,3 +6,5 @@ en:
       congratulation: Hello, %{user_name}!
       subject: Account activation
       welcome_text: Welcome to the Sample App. To complete registration follow the link below
+    password_reset:
+      subject: Password reset

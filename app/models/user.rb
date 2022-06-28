@@ -1,6 +1,7 @@
 # frozen_string_literal: true
 
 class User < ApplicationRecord
+  has_many :microposts, dependent: :destroy
   attr_accessor :remember_token, :activation_token, :reset_token
 
   before_save :downcase_email # включает 2 действия create & update
@@ -76,9 +77,15 @@ class User < ApplicationRecord
     UserMailer.password_reset(self).deliver_now
   end
 
-  # Returns true if a password reset has expired.
+  # Returns true if a password reset has expired. Читается как "раньше чем"
   def password_reset_expired?
     reset_sent_at < 2.hours.ago
+  end
+
+  # Defines a proto-feed.
+  # See 'Following users' for the full implementation
+  def feed
+    Micropost.where(user_id: id) # ("user_id = ?", id)
   end
 
   private
